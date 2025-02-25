@@ -26,8 +26,12 @@ function InputBox({
                     placeholder="Amount"
                     value = {amount}
                     disabled = {amountDisable}
-                    onChange={(e) => onAmountChange && onAmountChange(Number(e.target.value))}   // e.target.value string format me value le leti h
-                    // &&  works as a short-circuit operator, meaning if the first condition is false, the second part won’t execute.
+                    onChange={(e) =>{
+                        const newValue = e.target.value; // Store the current value
+                        e.target.value = ""; 
+                        onAmountChange && onAmountChange(Number(newValue)); 
+                      }}                                                              // e.target.value string format me value le leti h
+                                                                                   // &&  works as a short-circuit operator, meaning if the first condition is false, the second part won’t execute.
                 />
             </div>
             <div className="w-1/2 flex flex-wrap justify-end text-right">
